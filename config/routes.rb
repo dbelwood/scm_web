@@ -1,10 +1,14 @@
 ScmWeb::Application.routes.draw do
+  resources :repositories
+
+  resources :keys
+
   resources :sessions
 
   root to: "sessions#new"
   match "/auth/:provider/callback", to: "sessions#create"
   match "/auth/failure", to: "sessions#failure"
-  match "/logout", to: "sessions#destroy", :as => "logout"
+  match "/signout" => "sessions#destroy", :as => :signout
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
